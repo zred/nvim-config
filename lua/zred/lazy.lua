@@ -53,10 +53,20 @@ require("lazy").setup({
 
   -- LSP
   {
+  "neovim/nvim-lspconfig",
+  lazy = true,
+  config = function()
+    require("zred.lsp") -- now safe, since this plugin guarantees it's present
+  end
+  },
+  {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
     dependencies = {
-      -- Add any specific LSP or completion deps here
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
     }
   }
+}, {
+  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 })
